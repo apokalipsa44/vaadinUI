@@ -23,10 +23,10 @@ import java.util.Map;
 @Route("puppy")
 public class MainLayout extends AppLayout {
     private static final String LOGO_PNG = "logo.png";
-    public static final String ITM_DASHBOARD = "mainview.menue.item.dashboard";
-    public static final String ITM_PROFILE = "profile";
-    public static final String ITM_TRENDS = "trends";
-    public static final String ITM_LOGOUT = "mainview.menue.item.logout";
+    public static final String ITM_DASHBOARD = "mainview.menu.item.dashboard";
+    public static final String ITM_PROFILE = "mainview.menu.item.profile";
+    public static final String ITM_TRENDS = "mainview.menu.item.trends";
+    public static final String ITM_LOGOUT = "mainview.menu.item.logout";
 
     // ---------mapa gdzie trzyma relacje miedzy ramką a pozycją menu
     private Map<Tab, Component> tab2Workspace = new HashMap<>();
@@ -43,6 +43,8 @@ public class MainLayout extends AppLayout {
         Image img = new Image(res, "Vaadin Logo");
 //        Image img2= new Image("frontend/images/burger.png", "alt burger");
         img.setHeight("100px");
+
+
 
         addToNavbar(new DrawerToggle(), img);
         //------- koniec menu
@@ -69,7 +71,7 @@ public class MainLayout extends AppLayout {
     }
 
     private Tab trends() {
-        final Span label = new Span(getTranslation(ITM_TRENDS));
+        final Span label = new Span("Trends");
         final Icon icon = VaadinIcon.TRENDING_UP.create();
         final Tab tab = new Tab(new HorizontalLayout(icon, label));
         tab2Workspace.put(tab, new TrendsView());
