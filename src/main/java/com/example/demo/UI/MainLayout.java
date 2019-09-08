@@ -1,6 +1,7 @@
 package com.example.demo.UI;
 
 import com.example.demo.UI.views.*;
+import com.example.demo.repository.goodsRepository.services.GoodsServiceImpl;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -28,7 +29,7 @@ public class MainLayout extends AppLayout {
     public MainLayout() {
 
 //-------content czyli ramka
-        setContent(new Span("click in the menu ;-) , you will see me never again.."));
+        setContent(new ProductsView());
 //-------koniec ramki
 
         //------- menu, drawer czyli bedzie się wysówać

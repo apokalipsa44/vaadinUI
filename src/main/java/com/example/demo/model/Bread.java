@@ -1,22 +1,26 @@
 package com.example.demo.model;
 
 
-import java.time.LocalDate;
+import javax.persistence.Entity;
 
+@Entity
 public class Bread extends Goods {
 
-    private LocalDate expDate;
+    private String expDate;
 
-    public Bread(String name, Double price, Double taxRate, Integer stock, LocalDate expDate) {
+    public Bread() {
+    }
+
+    public Bread(String name, Double price, Double taxRate, Integer stock, String expDate) {
         super(name, price, taxRate, stock);
         this.expDate = expDate;
     }
 
-    public LocalDate getExpDate() {
+    public String getExpDate() {
         return expDate;
     }
 
-    public void setExpDate(LocalDate expDate) {
+    public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
 }

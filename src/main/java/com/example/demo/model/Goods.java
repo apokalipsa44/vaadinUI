@@ -1,8 +1,16 @@
 package com.example.demo.model;
 
 
+import javax.persistence.*;
 
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Goods {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
 
@@ -11,6 +19,9 @@ public class Goods {
     private Double taxRate;
 
     private Integer stock;
+
+    public Goods() {
+    }
 
     public Goods(String name, Double price, Double taxRate, Integer stock) {
         this.name = name;
@@ -49,5 +60,13 @@ public class Goods {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
