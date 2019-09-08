@@ -1,9 +1,6 @@
 package com.example.demo.UI;
 
-import com.example.demo.UI.views.DashboardView;
-import com.example.demo.UI.views.MainView;
-import com.example.demo.UI.views.ProfileView;
-import com.example.demo.UI.views.TrendsView;
+import com.example.demo.UI.views.*;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -23,10 +20,7 @@ import java.util.Map;
 @Route("puppy")
 public class MainLayout extends AppLayout {
     private static final String LOGO_PNG = "logo.png";
-    public static final String ITM_DASHBOARD = "mainview.menu.item.dashboard";
-    public static final String ITM_PROFILE = "mainview.menu.item.profile";
-    public static final String ITM_TRENDS = "mainview.menu.item.trends";
-    public static final String ITM_LOGOUT = "mainview.menu.item.logout";
+
 
     // ---------mapa gdzie trzyma relacje miedzy ramką a pozycją menu
     private Map<Tab, Component> tab2Workspace = new HashMap<>();
@@ -63,26 +57,26 @@ public class MainLayout extends AppLayout {
 
     // ------ -pozycje menu
     private Tab dashBoard() {
-        final Span label = new Span(getTranslation(ITM_DASHBOARD));
+        final Span label = new Span("Products");
         final Icon icon = VaadinIcon.DASHBOARD.create();
         final Tab tab = new Tab(new HorizontalLayout(icon, label));
-        tab2Workspace.put(tab, new DashboardView());
+        tab2Workspace.put(tab, new ProductsView());
         return tab;
     }
 
     private Tab trends() {
-        final Span label = new Span("Trends");
+        final Span label = new Span("Clients");
         final Icon icon = VaadinIcon.TRENDING_UP.create();
         final Tab tab = new Tab(new HorizontalLayout(icon, label));
-        tab2Workspace.put(tab, new TrendsView());
+        tab2Workspace.put(tab, new ClientsView());
         return tab;
     }
 
     private Tab user() {
-        final Span label = new Span(getTranslation(ITM_PROFILE));
+        final Span label = new Span("Sales");
         final Icon icon = VaadinIcon.USER.create();
         final Tab tab = new Tab(new HorizontalLayout(icon, label));
-        tab2Workspace.put(tab, new ProfileView());
+        tab2Workspace.put(tab, new SalesView());
         return tab;
     }
 
