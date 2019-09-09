@@ -4,6 +4,7 @@ import com.example.demo.UI.views.*;
 import com.example.demo.repository.goodsRepository.GoodsRepo;
 import com.example.demo.repository.goodsRepository.services.BreadServiceImpl;
 import com.example.demo.repository.goodsRepository.services.GoodsServiceImpl;
+import com.example.demo.services.GoodsListService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -25,19 +26,18 @@ import java.util.Map;
 public class MainLayout extends AppLayout {
     private static final String LOGO_PNG = "logo.png";
 
-    private GoodsServiceImpl goodsService;
+    GoodsListService goodsListService;
 
 
     // ---------mapa gdzie trzyma relacje miedzy ramką a pozycją menu
     private Map<Tab, Component> tab2Workspace = new HashMap<>();
 
     @Autowired
-    public MainLayout(GoodsServiceImpl goodsService) {
-        this.goodsService = goodsService;
-        ProductsView productsView = new ProductsView();
+    public MainLayout(GoodsListService goodsListService) {
+        this.goodsListService = goodsListService;
 
 //-------content czyli ramka
-        setContent(productsView);
+        setContent(new ProductsView(goodsListService));
 //-------koniec ramki
 
         //------- menu, drawer czyli bedzie się wysówać
@@ -61,7 +61,7 @@ public class MainLayout extends AppLayout {
         });
         addToDrawer(tabs);
 
-        productsView.listInitBread().forEach(e -> goodsService.save(e));
+
     }
 
     // ------ -pozycje menu
@@ -69,7 +69,7 @@ public class MainLayout extends AppLayout {
         final Span label = new Span("Products");
         final Icon icon = VaadinIcon.DASHBOARD.create();
         final Tab tab = new Tab(new HorizontalLayout(icon, label));
-        tab2Workspace.put(tab, new ProductsView());
+        tab2Workspace.put(tab, new ProductsView(goodsListService));
         return tab;
     }
 

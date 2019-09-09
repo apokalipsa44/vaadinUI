@@ -6,6 +6,7 @@ import com.example.demo.model.Goods;
 import com.example.demo.repository.goodsRepository.GoodsRepo;
 import com.example.demo.repository.goodsRepository.services.BreadServiceImpl;
 import com.example.demo.repository.goodsRepository.services.GoodsServiceImpl;
+import com.example.demo.services.GoodsListService;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
@@ -19,12 +20,13 @@ import java.util.List;
 public class ProductsView extends VerticalLayout {
 
 
-    List<Goods> goodsList = new ArrayList<>();
+
     Grid<Goods> goodsGrid = new Grid<>(Goods.class);
 
+    GoodsListService goodsListService;
 
-
-    public ProductsView() {
+    public ProductsView(GoodsListService goodsListService) {
+        this.goodsListService=goodsListService;
 
         Select<String> select = new Select<>();
         select.setLabel("Select products");
@@ -35,9 +37,9 @@ public class ProductsView extends VerticalLayout {
         select.addValueChangeListener(
                 event -> {
                     if (event.getValue().equals("Bread"))
-                        goodsGrid.setItems(listInitBread());
+                        goodsGrid.setItems(goodsListService.listInitBread());
                     if (event.getValue().equals("Cleaning supplies"))
-                        goodsGrid.setItems(listInitCleaningSup());
+                        goodsGrid.setItems(goodsListService.listInitCleaningSup());
 
                 });
 
@@ -45,37 +47,7 @@ public class ProductsView extends VerticalLayout {
         add(select, goodsGrid);
     }
 
-    public List<Goods> listInitBread() {
-        goodsList.clear();
-        Goods goods = new Goods("chlebek", 21.00, 0.14, 55);
-        Goods goods1 = new Goods("chałka", 14.00, 0.14, 85);
-        Goods goods2 = new Goods("bułka", 21.00, 0.14, 25);
-        Goods goods3 = new Goods("ciastko", 88.21, 0.14, 66);
-        Goods goods4 = new Goods("tort", 14.55, 0.14, 21);
-        goodsList.add(goods);
-        goodsList.add(goods1);
-        goodsList.add(goods2);
-        goodsList.add(goods3);
-        goodsList.add(goods4);
-//        goodsList.forEach(e->goodsService.save(e));
-        return goodsList;
-    }
 
-    public List<Goods> listInitCleaningSup() {
-        goodsList.clear();
-        Goods goods = new CleaningSupplies("domestos", 14.25, 0.24, 12);
-        Goods goods1 = new CleaningSupplies("mydło", 2.25, 0.24, 54);
-        Goods goods2 = new CleaningSupplies("kostka", 4.16, 0.24, 65);
-        Goods goods3 = new CleaningSupplies("cif kuchnia", 22.14, 0.24, 22);
-        Goods goods4 = new CleaningSupplies("cif łazienka", 55.14, 0.24, 95);
-        goodsList.add(goods);
-        goodsList.add(goods1);
-        goodsList.add(goods2);
-        goodsList.add(goods3);
-        goodsList.add(goods4);
-//        goodsList.forEach(e->goodsService.save(e));
-        return goodsList;
-    }
 }
 
 
