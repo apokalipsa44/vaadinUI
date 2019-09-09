@@ -9,7 +9,7 @@ public class CleaningSuppliesServiceImpl extends GoodsServiceImpl {
     private CleaningSuppliesRepo cleaningSuppliesRepo;
 
     public CleaningSuppliesServiceImpl(GoodsRepo goodsRepo, CleaningSuppliesRepo cleaningSuppliesRepo) {
-        super(goodsRepo);
+
         this.cleaningSuppliesRepo = cleaningSuppliesRepo;
     }
 }

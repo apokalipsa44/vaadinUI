@@ -12,9 +12,6 @@ public class GoodsServiceImpl {
     @Autowired
     private GoodsRepo goodsRepo;
 
-    public GoodsServiceImpl(GoodsRepo goodsRepo) {
-        this.goodsRepo = goodsRepo;
-    }
 
     public Optional<Goods> findById(Long id) {
         return goodsRepo.findById(id);

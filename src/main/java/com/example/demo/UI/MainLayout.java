@@ -1,6 +1,8 @@
 package com.example.demo.UI;
 
 import com.example.demo.UI.views.*;
+import com.example.demo.repository.goodsRepository.GoodsRepo;
+import com.example.demo.repository.goodsRepository.services.BreadServiceImpl;
 import com.example.demo.repository.goodsRepository.services.GoodsServiceImpl;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -14,6 +16,7 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,14 +25,19 @@ import java.util.Map;
 public class MainLayout extends AppLayout {
     private static final String LOGO_PNG = "logo.png";
 
+    private GoodsServiceImpl goodsService;
+
 
     // ---------mapa gdzie trzyma relacje miedzy ramką a pozycją menu
     private Map<Tab, Component> tab2Workspace = new HashMap<>();
 
-    public MainLayout() {
+    @Autowired
+    public MainLayout(GoodsServiceImpl goodsService) {
+        this.goodsService = goodsService;
+        ProductsView productsView = new ProductsView();
 
 //-------content czyli ramka
-        setContent(new ProductsView());
+        setContent(productsView);
 //-------koniec ramki
 
         //------- menu, drawer czyli bedzie się wysówać
@@ -38,7 +46,6 @@ public class MainLayout extends AppLayout {
         Image img = new Image(res, "Vaadin Logo");
 //        Image img2= new Image("frontend/images/burger.png", "alt burger");
         img.setHeight("100px");
-
 
 
         addToNavbar(new DrawerToggle(), img);
@@ -54,6 +61,7 @@ public class MainLayout extends AppLayout {
         });
         addToDrawer(tabs);
 
+        productsView.listInitBread().forEach(e -> goodsService.save(e));
     }
 
     // ------ -pozycje menu
