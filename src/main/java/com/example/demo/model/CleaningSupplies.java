@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 
+import com.example.demo.repository.goodsRepository.services.CleaningSuppliesServiceImpl;
+
 import javax.persistence.Entity;
 
 @Entity

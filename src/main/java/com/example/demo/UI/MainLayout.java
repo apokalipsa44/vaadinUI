@@ -5,6 +5,7 @@ import com.example.demo.repository.goodsRepository.GoodsRepo;
 import com.example.demo.repository.goodsRepository.services.BreadServiceImpl;
 import com.example.demo.repository.goodsRepository.services.GoodsServiceImpl;
 import com.example.demo.services.GoodsListService;
+import com.example.demo.services.ListService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -27,7 +28,7 @@ public class MainLayout extends AppLayout {
     private static final String LOGO_PNG = "logo.png";
 
     GoodsListService goodsListService;
-
+    ListService listService;
 
     // ---------mapa gdzie trzyma relacje miedzy ramką a pozycją menu
     private Map<Tab, Component> tab2Workspace = new HashMap<>();
@@ -37,7 +38,7 @@ public class MainLayout extends AppLayout {
         this.goodsListService = goodsListService;
 
 //-------content czyli ramka
-        setContent(new ProductsView(goodsListService));
+        setContent(new ProductsView(listService));
 //-------koniec ramki
 
         //------- menu, drawer czyli bedzie się wysówać
@@ -69,7 +70,7 @@ public class MainLayout extends AppLayout {
         final Span label = new Span("Products");
         final Icon icon = VaadinIcon.DASHBOARD.create();
         final Tab tab = new Tab(new HorizontalLayout(icon, label));
-        tab2Workspace.put(tab, new ProductsView(goodsListService));
+        tab2Workspace.put(tab, new ProductsView(listService));
         return tab;
     }
 

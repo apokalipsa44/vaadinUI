@@ -7,6 +7,7 @@ import com.example.demo.repository.goodsRepository.GoodsRepo;
 import com.example.demo.repository.goodsRepository.services.BreadServiceImpl;
 import com.example.demo.repository.goodsRepository.services.GoodsServiceImpl;
 import com.example.demo.services.GoodsListService;
+import com.example.demo.services.ListService;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
@@ -20,13 +21,13 @@ import java.util.List;
 public class ProductsView extends VerticalLayout {
 
 
-
     Grid<Goods> goodsGrid = new Grid<>(Goods.class);
 
-    GoodsListService goodsListService;
+    ListService listService;
 
-    public ProductsView(GoodsListService goodsListService) {
-        this.goodsListService=goodsListService;
+    @Autowired
+    public ProductsView(ListService listService) {
+        this.listService = listService;
 
         Select<String> select = new Select<>();
         select.setLabel("Select products");
@@ -37,9 +38,9 @@ public class ProductsView extends VerticalLayout {
         select.addValueChangeListener(
                 event -> {
                     if (event.getValue().equals("Bread"))
-                        goodsGrid.setItems(goodsListService.listInitBread());
+                        goodsGrid.setItems(listService.listInint("Bread"));
                     if (event.getValue().equals("Cleaning supplies"))
-                        goodsGrid.setItems(goodsListService.listInitCleaningSup());
+                        goodsGrid.setItems(listService.listInint("Cleaning supplies"));
 
                 });
 

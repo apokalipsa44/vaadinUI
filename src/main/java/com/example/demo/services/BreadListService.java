@@ -15,6 +15,10 @@ public class BreadListService extends GoodsListService {
 
     BreadServiceImpl breadService;
 
+    @Autowired
+    public BreadListService(BreadServiceImpl breadService) {
+        this.breadService = breadService;
+    }
 
     public List<Goods> listInitBread() {
         goodsList.clear();
