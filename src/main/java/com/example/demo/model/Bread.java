@@ -12,8 +12,9 @@ public class Bread extends Goods {
     }
 
     public Bread(String name, Double price, Double taxRate, Integer stock, String expDate) {
-        super(name, price, taxRate, stock);
+        super(name, price, taxRate, stock, GoodsType.BREAD);
         this.expDate = expDate;
+
     }
 
     public String getExpDate() {

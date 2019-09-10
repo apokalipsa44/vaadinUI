@@ -20,14 +20,17 @@ public class Goods {
 
     private Integer stock;
 
+    private GoodsType goodsType;
+
     public Goods() {
     }
 
-    public Goods(String name, Double price, Double taxRate, Integer stock) {
+    public Goods(String name, Double price, Double taxRate, Integer stock, GoodsType goodsType) {
         this.name = name;
         this.price = price;
         this.taxRate = taxRate;
         this.stock = stock;
+        this.goodsType=goodsType;
     }
 
     public String getName() {

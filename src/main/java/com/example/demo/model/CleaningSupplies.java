@@ -10,6 +10,6 @@ public class CleaningSupplies extends Goods {
     }
 
     public CleaningSupplies(String name, Double price, Double taxRate, Integer stock) {
-        super(name, price, taxRate, stock);
+        super(name, price, taxRate, stock, GoodsType.CLEANING_SUPPLIES);
     }
 }

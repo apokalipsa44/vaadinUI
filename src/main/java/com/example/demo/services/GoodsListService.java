@@ -5,12 +5,10 @@ import com.example.demo.model.CleaningSupplies;
 import com.example.demo.model.Goods;
 import com.example.demo.repository.goodsRepository.services.BreadServiceImpl;
 import com.example.demo.repository.goodsRepository.services.CleaningSuppliesServiceImpl;
-import com.example.demo.repository.goodsRepository.services.GoodsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -20,11 +18,11 @@ public class GoodsListService {
 
     List<Goods> goodsList = new ArrayList<>();
 
-    @Autowired
-    public GoodsListService(BreadServiceImpl breadService, CleaningSuppliesServiceImpl cleaningSuppliesService) {
-        this.breadService = breadService;
-        this.cleaningSuppliesService = cleaningSuppliesService;
-    }
+//    @Autowired
+//    public GoodsListService(BreadServiceImpl breadService, CleaningSuppliesServiceImpl cleaningSuppliesService) {
+//        this.breadService = breadService;
+//        this.cleaningSuppliesService = cleaningSuppliesService;
+//    }
 
     public List<Goods> listInitBread() {
         goodsList.clear();
