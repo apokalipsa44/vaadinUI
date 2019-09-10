@@ -34,8 +34,9 @@ public class MainLayout extends AppLayout {
     private Map<Tab, Component> tab2Workspace = new HashMap<>();
 
     @Autowired
-    public MainLayout(GoodsListService goodsListService) {
+    public MainLayout(GoodsListService goodsListService, ListService listService) {
         this.goodsListService = goodsListService;
+        this.listService=listService;
 
 //-------content czyli ramka
         setContent(new ProductsView(listService));

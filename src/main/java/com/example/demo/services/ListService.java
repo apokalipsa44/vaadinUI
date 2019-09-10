@@ -14,19 +14,27 @@ import java.util.*;
 public class ListService {
 private final String goodType = "breadListService";
 
-    Map<String, GoodsListService> goodsListServiceList;
-    BreadServiceImpl breadService;
-    CleaningSuppliesServiceImpl cleaningSuppliesService;
+//    Map<String, GoodsListService> goodsListServiceList;
+//    BreadServiceImpl breadService;
+//    CleaningSuppliesServiceImpl cleaningSuppliesService;
+//
+//    @Autowired
+//    public ListService(Map<String, GoodsListService> goodsListServiceList, BreadServiceImpl breadService, CleaningSuppliesServiceImpl cleaningSuppliesService) {
+//        this.goodsListServiceList = map();
+//        this.breadService=breadService;
+//        this.cleaningSuppliesService=cleaningSuppliesService;
+//    }
+
+    private Set<String>listString;
 
     @Autowired
-    public ListService(Map<String, GoodsListService> goodsListServiceList) {
-        this.goodsListServiceList = map();
+    public ListService(Set<String> listString) {
+        this.listString = set();
     }
 
-
-        public List<Goods> listInint(String listType){
+    public List<Goods> listInint(String listType){
         if (listType.equals("Bread")){
-            return goodsListServiceList.get("breadListService").breadListService.listInitBread();
+            return listString.("breadListService").breadListService.listInitBread();
         }
         if (listType.equals("Cleaning supplies")){
             return goodsListServiceList.get("cleaningSuppliesListService").cleaningSuppliesListService.listInitCleaningSup();
@@ -42,4 +50,33 @@ private final String goodType = "breadListService";
         return map;
     }
 
+    @Bean
+    public Set<String> set(){
+        Set<String> lstSet = new HashSet<>();
+        lstSet.add("breadListService");
+        lstSet.add("cleaningSuppliesListService");
+        return lstSet;
+    }
 }
+package com.memorynotfound.spring.core.autowired;
+
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.beans.factory.annotation.Qualifier;
+        import org.springframework.stereotype.Component;
+
+//@Component
+//public class SellPhone {
+//
+//    @Autowired
+//    @Qualifier(value = "mysqlMessageRepository")
+//    private MessageRepository mysqlMessageRepository;
+//
+//    @Autowired
+//    @Qualifier(value = "inMemoryMessageRepository")
+//    private MessageRepository inMemoryMessageRepository;
+//
+//    public void sendMessage(){
+//        mysqlMessageRepository.save();
+//        inMemoryMessageRepository.save();
+//    }
+//}
