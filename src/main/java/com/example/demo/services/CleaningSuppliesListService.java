@@ -6,15 +6,17 @@ import com.example.demo.repository.goodsRepository.services.CleaningSuppliesServ
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CleaningSuppliesListService extends GoodsListService{
+public class CleaningSuppliesListService{
 
     List<Goods> goodsList = new ArrayList<>();
 
     CleaningSuppliesServiceImpl cleaningSuppliesService;
+
 
     @Autowired
     public CleaningSuppliesListService(CleaningSuppliesServiceImpl cleaningSuppliesService) {

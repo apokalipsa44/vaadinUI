@@ -6,7 +6,6 @@ import com.example.demo.model.Goods;
 import com.example.demo.repository.goodsRepository.GoodsRepo;
 import com.example.demo.repository.goodsRepository.services.BreadServiceImpl;
 import com.example.demo.repository.goodsRepository.services.GoodsServiceImpl;
-import com.example.demo.services.GoodsListService;
 import com.example.demo.services.ListService;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;

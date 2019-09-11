@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class BreadListService extends GoodsListService {
+public class BreadListService {
     List<Goods> goodsList = new ArrayList<>();
 
     BreadServiceImpl breadService;

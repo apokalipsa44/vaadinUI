@@ -4,7 +4,6 @@ import com.example.demo.UI.views.*;
 import com.example.demo.repository.goodsRepository.GoodsRepo;
 import com.example.demo.repository.goodsRepository.services.BreadServiceImpl;
 import com.example.demo.repository.goodsRepository.services.GoodsServiceImpl;
-import com.example.demo.services.GoodsListService;
 import com.example.demo.services.ListService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -27,15 +26,14 @@ import java.util.Map;
 public class MainLayout extends AppLayout {
     private static final String LOGO_PNG = "logo.png";
 
-    GoodsListService goodsListService;
+
     ListService listService;
 
     // ---------mapa gdzie trzyma relacje miedzy ramką a pozycją menu
     private Map<Tab, Component> tab2Workspace = new HashMap<>();
 
     @Autowired
-    public MainLayout(GoodsListService goodsListService, ListService listService) {
-        this.goodsListService = goodsListService;
+    public MainLayout( ListService listService) {
         this.listService=listService;
 
 //-------content czyli ramka
