@@ -1,1 +1,2 @@
 "# vaadinUI" 
+"# easy-note" 
