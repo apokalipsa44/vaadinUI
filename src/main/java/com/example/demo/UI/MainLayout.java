@@ -1,6 +1,7 @@
 package com.example.demo.UI;
 
 import com.example.demo.UI.views.*;
+import com.example.demo.services.ClientsListService;
 import com.example.demo.services.ProductsListService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -25,18 +26,19 @@ import java.util.Map;
 public class MainLayout extends AppLayout {
     private static final String LOGO_PNG = "logo.png";
 
+//todo
+// CommandLineRunner
 
     // ---------mapa gdzie trzyma relacje miedzy ramką a pozycją menu
     private Map<Tab, Component> tab2Workspace = new HashMap<>();
-private ProductsListService productsListService;
-private ProductsView  productsView;
+    private ProductsListService productsListService;
+    private ClientsListService clientsListService;
+    private ProductsView productsView;
+
     @Autowired
-    public MainLayout(ProductsListService productsListService, ProductsView productsView) {
-        this.productsListService=productsListService;
-        this.productsView=productsView;
-
-
-
+    public MainLayout(ProductsListService productsListService, ClientsListService clientsListService) {
+        this.productsListService = productsListService;
+        this.clientsListService = clientsListService;
 
 
 //-------content czyli ramka
@@ -72,7 +74,7 @@ private ProductsView  productsView;
         final Span label = new Span("Products");
         final Icon icon = VaadinIcon.DASHBOARD.create();
         final Tab tab = new Tab(new HorizontalLayout(icon, label));
-        tab2Workspace.put(tab, new ProductsView(productsListService));
+        tab2Workspace.put(tab, new ProductsView(productsListService,clientsListService));
         return tab;
     }
 
