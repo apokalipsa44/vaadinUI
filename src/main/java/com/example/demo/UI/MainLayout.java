@@ -1,14 +1,12 @@
 package com.example.demo.UI;
 
 import com.example.demo.UI.views.*;
-import com.example.demo.repository.goodsRepository.GoodsRepo;
-import com.example.demo.repository.goodsRepository.services.BreadServiceImpl;
-import com.example.demo.repository.goodsRepository.services.GoodsServiceImpl;
-import com.example.demo.services.ListService;
+import com.example.demo.services.ProductsListService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -22,33 +20,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import java.util.Map;
 
+@org.springframework.stereotype.Component
 @Route("puppy")
 public class MainLayout extends AppLayout {
     private static final String LOGO_PNG = "logo.png";
 
 
-    ListService listService;
-
     // ---------mapa gdzie trzyma relacje miedzy ramką a pozycją menu
     private Map<Tab, Component> tab2Workspace = new HashMap<>();
-
+private ProductsListService productsListService;
+private ProductsView  productsView;
     @Autowired
-    public MainLayout( ListService listService) {
-        this.listService=listService;
+    public MainLayout(ProductsListService productsListService, ProductsView productsView) {
+        this.productsListService=productsListService;
+        this.productsView=productsView;
+
+
+
+
 
 //-------content czyli ramka
-        setContent(new ProductsView(listService));
+        setContent(new Label("ssij"));
 //-------koniec ramki
 
         //------- menu, drawer czyli bedzie się wysówać
         StreamResource res = new StreamResource(LOGO_PNG,
                 () -> MainView.class.getResourceAsStream("/" + LOGO_PNG));
-        Image img = new Image(res, "Vaadin Logo");
+//        Image img = new Image(res, "Vaadin Logo");
 //        Image img2= new Image("frontend/images/burger.png", "alt burger");
-        img.setHeight("100px");
+//        img.setHeight("100px");
 
 
-        addToNavbar(new DrawerToggle(), img);
+        addToNavbar(new DrawerToggle());
         //------- koniec menu
 
 
@@ -69,7 +72,7 @@ public class MainLayout extends AppLayout {
         final Span label = new Span("Products");
         final Icon icon = VaadinIcon.DASHBOARD.create();
         final Tab tab = new Tab(new HorizontalLayout(icon, label));
-        tab2Workspace.put(tab, new ProductsView(listService));
+        tab2Workspace.put(tab, new ProductsView(productsListService));
         return tab;
     }
 

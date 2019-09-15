@@ -6,10 +6,10 @@ import com.example.demo.repository.ProductsRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductsRepositoryImpl {
+public class ProductsServiceImpl {
     private ProductsRepository productsRepository;
 
-    public ProductsRepositoryImpl(ProductsRepository productsRepository) {
+    public ProductsServiceImpl(ProductsRepository productsRepository) {
         this.productsRepository = productsRepository;
     }
 
